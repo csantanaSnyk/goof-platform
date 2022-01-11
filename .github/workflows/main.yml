@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Install dependencies
-      - uses: cd SCA/JS
+        run: cd SCA/JS
         run: npm install
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
