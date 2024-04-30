@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: '20'
       - name: List files in the directory
-        run: ls -la ./Code/frontend/src
+        run: ls -la ./Code/routes
         
       - name: Run Snyk to check for vulnerabilities in the frontend directory
         uses: snyk/actions/node@master
