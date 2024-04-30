@@ -1,4 +1,4 @@
-name: Snyk scan
+name: Snyk full scan
 
 on:
   workflow_dispatch:  # Manual trigger for the workflow
