@@ -24,7 +24,7 @@ jobs:
         uses: snyk/actions/node@master
         continue-on-error: true
         with: 
-          command: snyk code test
+          command: code test
           args: --sarif-file-output=snyk_code_scan.sarif --severity-threshold=high --path=./Code/routes
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
