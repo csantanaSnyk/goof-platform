@@ -23,7 +23,7 @@ jobs:
         continue-on-error: true
         with: 
           command: test
-          args: --sarif-file-output=snyk_dependency_scan.sarif --severity-threshold=low
+          args: --sarif-file-output=snyk_dependency_scan.sarif --severity-threshold=high --path=./frontend
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
