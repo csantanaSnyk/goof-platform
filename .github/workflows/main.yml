@@ -10,24 +10,20 @@ permissions:
   security-events: write
   actions: read  
 
+
 jobs:
-  # Job for running Snyk to check dependencies for vulnerabilities
-  snyk_scan:
+  security:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3  # Using a stable version
-
-      - name: Run Snyk to check for vulnerabilities in dependencies
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
-        continue-on-error: true
-        with: 
-          command: test
-          args: --sarif-file-output=snyk_code_scan.sarif --severity-threshold=high --path=./frontend
+        continue-on-error: true # To make sure that SARIF upload gets called
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-
-      - name: Upload Dependency Scan Results to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: snyk_code_scan.sarif
+          args: --sarif-file-output=snyk.sarif
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: snyk.sarif
